@@ -1,5 +1,9 @@
 import Pkg;
 
+Pkg.add("ImageInTerminal")
 Pkg.add("ImageMagick")
 Pkg.add("Images")
-Pkg.add("TestImages")
+
+Pkg.build("ImageInTerminal")
+Pkg.build("ImageMagick")
+Pkg.build("Images")
