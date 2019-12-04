@@ -1,30 +1,30 @@
-using TestImages
-# Select A Random Image -- Caelan
-testImagePath = selectImage()
+using TestImages;
+
+testImagePath = selectImage();
 
 
 
-U, sigma, imageVector, meanA, X = generateBadManifold()
+U, sigma, imageVector, meanA, X = generateBadManifold();
 
 
-k = computeER(imageVector, sigma, .95)
+k = computeER(imageVector, sigma, .95);
 
 
 for i = 1:k
-    M[i,:] = X * U[:, i]
+    M[i,:] = X * U[:, i];
 end
 
 
-testImage = mat(testimage(testImagePath))
+testImage = mat(testimage(testImagePath));
 
 
-testImageVec = vec(testImage)
+testImageVec = vec(testImage);
 
 
-testImageMeanCentered = testImageVec - meanA
+testImageMeanCentered = testImageVec - meanA;
 
 for i = 1:k
-    t[i,:] = testImageMeanCentered * U[:, i]
+    t[i,:] = testImageMeanCentered * U[:, i];
 end
 
 
