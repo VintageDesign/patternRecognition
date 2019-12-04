@@ -27,6 +27,9 @@ function generateSingleManifold()
        imageVectors[x] -= image_mean
     end
 
+    #Tim figure out how to make the array of arrays into a matrix. Then we should be gucci
+    imageVectors = Matrix(imageVectors)
+
 
     F = svd(imageVectors)
 
