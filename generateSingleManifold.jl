@@ -6,41 +6,46 @@ function generateSingleManifold()
     imageVectors = Array{Gray{Float64}, 1}[]
     imgFileNames = String[]
     #generate image file names
+    println("Generating File Names")
     for x = 0:127
         fName = "TrainingImages/Boat64/UnProcessed/img_$x.png"
         push!(imgFileNames, fName)
     end
+    println("File Names Generated...\n")
+
     # load images
+    p = Progress(length(imgFileNames), 1)
+
     for img = imgFileNames
-        println("Open image: $img")
+        # println("Open image: $img")
         img = load(img) # load image
         img = float64.(img) # convert to float
         image_mean = image_mean .+ img
         vecImg = vec(img)
         push!(imageVectors, vecImg)
+        next!(p)
     end
+    println("Images Loaded...\n")
 
+    println("Getting Image Mean")
     image_mean = vec(image_mean ./ 64)
 
-    println(summary(imageVectors[1]))
+    # Image matrix (2D array instead of array of arrays)
+    imageMatrix = permutedims(reshape(hcat(imageVectors...), (length(imageVectors[1]), length(imageVectors))))
+
     for x = 1:128
        imageVectors[x] -= image_mean
     end
+    println("Image mean applied...\n")
+    
+    # Image matrix mean centered
+    println("Calculating SVD")
+    imageMatrixMC = permutedims(reshape(hcat(imageVectors...), (length(imageVectors[1]), length(imageVectors))))
+    U, S, V = svd(imageMatrixMC)
+    println("SVD Calculated...\n")
 
-    #Tim figure out how to make the array of arrays into a matrix. Then we should be gucci
-    imageVectors = Matrix(imageVectors)
-
-
-    F = svd(imageVectors)
-
-
-
-
-
-
-
-
+    return U, S, imageMatrix, image_mean, imageMatrixMC
 end
 
-using Images, ImageInTerminal, LinearAlgebra
+using Images, ImageInTerminal, LinearAlgebra, ProgressMeter
 generateSingleManifold()
