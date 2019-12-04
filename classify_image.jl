@@ -1,7 +1,10 @@
-using TestImages;
-
-testImagePath = selectImage();
-
+#=
+     Author: Riley Kopp
+Description: This file classifies a user specified image from the test data based on the
+             given training images. Once the image has been classified, the script displays
+             the test image next to its nearest match in the training data along with an
+             estimated pose
+=#
 
 
 U, sigma, imageVector, meanA, X = generateBadManifold();
@@ -15,7 +18,8 @@ for i = 1:k
 end
 
 
-testImage = mat(testimage(testImagePath));
+
+testImage = mat(float64.(load(testImagePath)));
 
 
 testImageVec = vec(testImage);
