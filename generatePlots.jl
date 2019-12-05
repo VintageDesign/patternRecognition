@@ -5,9 +5,7 @@ Description: This file generates plots for the manifold in 3 dimensions
              the number of cols in the imageVector
 =#
 push!(LOAD_PATH, pwd())
-using Revise
-
-using SingleManifold
+using Revise, SingleManifold, PlotManifold
 
 
 println("Generating Plots...")
@@ -29,3 +27,4 @@ for i = 1:k
     M[i,:] = X * U[:, i];
 end
 
+PlotManifold.plot(M[1, :], M[2, :], M[3, :])
