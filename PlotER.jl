@@ -1,6 +1,8 @@
+module PlotER
 
+# using Images, ImageInTerminal, LinearAlgebra, ProgressMeter
 
-function k = plot_ER(X, sigma)
+function k = Plot_ER(X, sigma)
 
    actual_energy_level = Float64[]
    k = 0
