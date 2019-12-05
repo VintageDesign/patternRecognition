@@ -1,7 +1,17 @@
+#=
+     Author: Timothy Ford
+Description: File that holds a function to generate a single manifold
+=#
+
 module SingleManifold
 
 using Images, ImageInTerminal, LinearAlgebra, ProgressMeter
 
+#=
+     Author: Timothy Ford
+Description: Function that generates reduces the dimensionality of a training object
+            and returns the necessary values from and SVD. 
+=#
     function generateSingleManifold(itemName)
         image_mean = zeros(Float64, 128, 128)
         k = 1
