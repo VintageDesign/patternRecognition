@@ -46,7 +46,7 @@ using Images, ImageInTerminal, LinearAlgebra, ProgressMeter
         # Image matrix mean centered
         println("Calculating SVD")
         imageMatrixMC = permutedims(reshape(hcat(imageVectors...), (length(imageVectors[1]), length(imageVectors))))
-        U, S, V = svd(imageMatrixMC)
+        U, S, V = svd(imageMatrixMC')
         println("SVD Calculated...\n")
 
         return U, S, imageMatrix, image_mean, imageMatrixMC
