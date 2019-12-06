@@ -2,6 +2,9 @@
 
 - Linux
 
+  ```
   ./installJulia.sh
-
+  ```
+  ```
   ./julia<jupyterInstall.jl >
+  ```
