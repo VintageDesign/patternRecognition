@@ -1,3 +1,3 @@
-snap install --classic julia
+sudo snap install --classic julia
 julia install.jl
 
