@@ -1,33 +1,22 @@
 module PlotER
 
-using Plots, LinearAlgebra
+using Plots, LinearAlgebra, ComputeER
 
     function plotER(X, sigma)
-    """
+    #=
     @author: Riley Campbell
-    """
-
-       actual_energy_level = Float64[]
-       k = 0
-       last_energy = 0
-       norm_x = opnorm(X, 2)^2
-       sumsigma = sum(sigma)
-
-       while k < 128
+    =#
+        actual_energy_level = Float64[]
+        k = 0
+        while k < 128
           k += 1
-          sigma_val = 0
 
-          for i = 1:k
-             sigma_val += sigma[i]
+          println(k)
+          push!(actual_energy_level, ComputeER.compute(X, sigma, k))
+        end
 
-          end
-
-          push!(actual_energy_level, (sigma_val^2) / norm_x)
-          last_energy = actual_energy_level[k]
-       end
-
-       actual_energy_level = actual_energy_level ./ maximum(actual_energy_level)
-       plot( 1:k, actual_energy_level[:])
+        actual_energy_level = actual_energy_level ./ maximum(actual_energy_level)
+        plot( 1:k, actual_energy_level[:])
     end
 
 end
