@@ -1,0 +1,6 @@
+OS Used: Ubuntu 19.04
+Language Version: julia version 1.0.3
+Compiler Used: N/A
+Enviroment: Uses IJulia and Jupyter to create an interactive enviroment for 
+            running and testing code. We specifically liked the ability to test 
+            and modify individual sections of code without the need to recompile.

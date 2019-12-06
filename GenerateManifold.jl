@@ -17,7 +17,7 @@ using Images, LinearAlgebra
 
         image_mean = zeros(Int8, 128,128)
 
-        imageVectors = Array{Gray{Float16}, 1}[]
+        imageVectors = Array{Gray{Float64}, 1}[]
         imgFileNames = String[]
 
         for k = 1:20
@@ -25,12 +25,8 @@ using Images, LinearAlgebra
 
             for i = 1:128
                 x = i - 1
-                fName = "TrainingImages/" * cell * "64/UnProcessed/img_$x.png"
-                push!(imgFileNames, fName)
-            end
-
-            for img = imgFileNames
-                img = load(img) # load image
+                imageName = "TrainingImages/" * cell * "64/UnProcessed/img_$x.png"
+                img = load(imageName) # load image
                 img = float64.(img) # convert to float
                 image_mean = image_mean .+ img
                 vecImg = vec(img)
@@ -39,9 +35,7 @@ using Images, LinearAlgebra
         end
         image_mean = vec(image_mean ./ 128*20)
 
-        # Image matrix (2D array instead of array of arrays)
         imageMatrix = permutedims(reshape(hcat(imageVectors...), (length(imageVectors[1]), length(imageVectors))))
-
         for x = 1:128*20
            imageVectors[x] -= image_mean
         end
@@ -51,6 +45,7 @@ using Images, LinearAlgebra
         println("Calculating SVD")
         imageMatrixMC = permutedims(reshape(hcat(imageVectors...), (length(imageVectors[1]), length(imageVectors))))
         U, S, V = svd(imageMatrixMC')
+        print(summary(imageMatrixMC'))
         println("SVD Calculated...\n")
 
         return U, S, imageMatrix, image_mean, imageMatrixMC, names
