@@ -3,6 +3,9 @@ module PlotER
 using Plots, LinearAlgebra
 
     function plotER(X, sigma)
+    """
+    @author: Riley Campbell
+    """
 
        actual_energy_level = Float64[]
        k = 0
