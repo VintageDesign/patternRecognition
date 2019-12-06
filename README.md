@@ -1,6 +1,6 @@
 # Install Guide
 
-###Linux
+### Linux
 
   ```
   ./installJulia.sh
