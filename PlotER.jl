@@ -3,12 +3,15 @@ module PlotER
 using Plots, LinearAlgebra
 
     function plotER(X, sigma)
+    """
+    @author: Riley Campbell
+    """
 
        actual_energy_level = Float64[]
        k = 0
        last_energy = 0
        norm_x = opnorm(X, 2)^2
-       sigma_sum = sum(sigma)
+       sumsigma = sum(sigma)
 
        while k < 128
           k += 1
