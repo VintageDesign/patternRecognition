@@ -1,4 +1,4 @@
-#Install Guide
+# Install Guide
 
 - Linux 
 ./installJulia.sh
