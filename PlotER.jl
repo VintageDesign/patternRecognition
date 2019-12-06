@@ -11,7 +11,7 @@ using Plots, LinearAlgebra
        k = 0
        last_energy = 0
        norm_x = opnorm(X, 2)^2
-       sigma_sum = sum(sigma)
+       sumsigma = sum(sigma)
 
        while k < 128
           k += 1

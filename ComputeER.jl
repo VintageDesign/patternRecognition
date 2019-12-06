@@ -2,17 +2,17 @@
      Author: Caelan Klein
 Description:
 =#
-module computeER
+module ComputeER
 
-import LinearAlgebra
+using LinearAlgebra
 
     function compute(X, sigma, target_energy_level)
 
         actual_energy_level = 0
         k = 0
-        norm_x = norm(X, 2)^2
-        sigma = sum(sigma)
-        
+        norm_x = opnorm(X, 2)^2
+        sigmaSum = sum(sigma)
+
         while target_energy_level >= actual_energy_level
             k = k + 1
             sigma_val = 0

@@ -6,15 +6,27 @@ Description: This file classifies a user specified image from the test data base
              estimated pose
 =#
 
+push!(LOAD_PATH, pwd())
+using Images, Revise, GenerateManifold, PlotManifold, PlotER, Select, ComputeER, JLD
 
-U, sigma, imageVector, meanA, X = generateBadManifold();
+if(!isfile("data.jld"))
+    U, sigma, imageMatrix,  mean, imageMatrixMeanCentered, objectTypes = GenerateManifold.generateManifold();
+    save("data.jld", "U", U, "sigma", sigma, "imageMatrix", imageMatrix, "mean", mean, "imageMatrixMeanCentered", imageMatrixMeanCentered, "objectTypes", objectTypes)
+else
+    U = load("data.jld", "U")
+    sigma = load("data.jld", "sigma")
+    imageMatrix = load("data.jld", "imageMatrix")
+    mean = load("data.jld", "mean")
+    imageMatrixMeanCentered = load("data.jld", "imageMatrixMeanCentered")
+    objectTypes = load("data.jld", "objectTypes")
+end
 
+k = ComputeER.compute(imageMatrixMeanCentered, sigma, .9);
 
-k = computeER(imageVector, sigma, .95);
-
+M = Array{Gray{Float64}, 1}[]
 
 for i = 1:k
-    M[i,:] = X * U[:, i];
+    push!(M, imageMatrixMeanCentered * U[:][i])
 end
 
 
@@ -25,7 +37,7 @@ testImage = mat(float64.(load(testImagePath)));
 testImageVec = vec(testImage);
 
 
-testImageMeanCentered = testImageVec - meanA;
+testImageMeanCentered = testImageVec - mean;
 
 for i = 1:k
     t[i,:] = testImageMeanCentered * U[:, i];
@@ -35,3 +47,4 @@ end
 #KNN search
 
 #Show Image and object
+=#
