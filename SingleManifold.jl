@@ -5,15 +5,15 @@ Description: File that holds a function to generate a single manifold
 
 module SingleManifold
 
-using Images, ImageInTerminal, LinearAlgebra, ProgressMeter, Load
+using Images, ImageInTerminal, LinearAlgebra,  Load
 
 #=
      Author: Timothy Ford
 Description: Function that generates reduces the dimensionality of a training object
             and returns the necessary values from and SVD.
 =#
-    function generateSingleManifold(itemName)
-        image_mean, imageVectors = loadSingleImage()
+    function generateSingleManifold()
+        image_mean, imageVectors = Load.loadSingleImage()
         # Image matrix (2D array instead of array of arrays)
         imageMatrix = permutedims(reshape(hcat(imageVectors...), (length(imageVectors[1]), length(imageVectors))))
 

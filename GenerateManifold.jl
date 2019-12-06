@@ -1,6 +1,6 @@
 #=
      Author: Timothy Ford
-Description: File that generates a manifold using generateSingleManifold
+Description: File that generates a manifold for all 20 datasets combined
 =#
 
 module GenerateManifold

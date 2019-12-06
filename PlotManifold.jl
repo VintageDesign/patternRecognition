@@ -1,11 +1,12 @@
 module PlotManifold
 
+    #=
+    @author: Riley Campbell
+    Description: Displays the first 3 dimensions of the manifold
+    =#
 using Plots
 
     function plot(X, Y, Z)
-    """
-    @author: Riley Campbell
-    """
         display(plot3d(X, Y, Z))
     end
 

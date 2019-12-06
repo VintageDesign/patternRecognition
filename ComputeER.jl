@@ -1,6 +1,6 @@
 #=
      Author: Caelan Klein
-Description:
+Description: Computes the energy recovery from sigma[1-k] for a given k
 =#
 module ComputeER
 
@@ -10,7 +10,6 @@ using LinearAlgebra
 
         actual_energy_level = 0
         norm_x = opnorm(X, 2)^2
-        sigmaSum = sum(sigma)
 
         sigma_val = 0
         for i = 1:k
