@@ -4,5 +4,5 @@
 
   ```
   ./installJulia.sh
-  ./julia<jupyterInstall.jl >
+  ./julia jupyterInstall.jl
   ```
