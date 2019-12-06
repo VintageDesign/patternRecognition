@@ -11,7 +11,7 @@ using Images, Revise, GenerateManifold, PlotManifold, PlotER, Select, ComputeER,
 
 if(!isfile("data.jld"))
     U, sigma, imageMatrix,  mean, imageMatrixMeanCentered, objectTypes = GenerateManifold.generateManifold();
-    save("data.jld", "U", U, "sigma", sigma, "imageMatrix", imageMatrix, "mean", mean, "imageMatrixMeanCentered", imageMatrixMeanCentered, "objectTypes", objectTypes)
+#=    save("data.jld", "U", U, "sigma", sigma, "imageMatrix", imageMatrix, "mean", mean, "imageMatrixMeanCentered", imageMatrixMeanCentered, "objectTypes", objectTypes)
 else
     U = load("data.jld", "U")
     sigma = load("data.jld", "sigma")
@@ -19,14 +19,17 @@ else
     mean = load("data.jld", "mean")
     imageMatrixMeanCentered = load("data.jld", "imageMatrixMeanCentered")
     objectTypes = load("data.jld", "objectTypes")
+=#
 end
 
 k = ComputeER.compute(imageMatrixMeanCentered, sigma, .9);
 
 M = Array{Gray{Float64}, 1}[]
 
+print(summary(U))
 for i = 1:k
-    push!(M, imageMatrixMeanCentered * U[:][i])
+    temp = imageMatrixMeanCentered * U[:][i]
+    push!(M, temp )
 end
 
 
