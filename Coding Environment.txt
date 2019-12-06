@@ -1,3 +1,0 @@
-OS Used: Ubuntu 19.04
-Language Version: julia version 1.0.3
-Compiler Used: N/A
