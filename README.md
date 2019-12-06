@@ -1,10 +1,8 @@
 # Install Guide
 
-- Linux
+###Linux
 
   ```
   ./installJulia.sh
-  ```
-  ```
   ./julia<jupyterInstall.jl >
   ```
